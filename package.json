@@ -45,7 +45,8 @@
   "dependencies": {
     "d3-scale": "^4.0.2",
     "isomorphic-fetch": "^3.0.0",
-    "lodash.memoize": "^4.1.2"
+    "lodash.memoize": "^4.1.2",
+    "react-native-performance": "^5.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.17",
