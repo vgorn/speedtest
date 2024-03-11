@@ -15,6 +15,16 @@ const cfGetServerTime = r => {
   }
 };
 
+const _getPerfByURL = (url) => {
+  let r = null
+  performance.getEntriesByType("resource").forEach((perf) => {
+    if (perf.name.toString() === url) {
+      r = perf
+    }
+  })
+  return r
+}
+
 const getTtfb = perf => perf.responseStart - perf.requestStart;
 
 const gePayloadDownload = perf => perf.responseEnd - perf.responseStart; // min 1ms
@@ -295,7 +305,8 @@ class BandwidthMeasurementEngine {
           return;
         }
 
-        const perf = performance.getEntriesByName(url).slice(-1)[0]; // get latest perf timing
+        //const perf = performance.getEntriesByName(url).slice(-1)[0]; // get latest perf timing
+        const perf = _getPerfByURL(url)
         const timing = {
           transferSize: perf.transferSize,
           ttfb: getTtfb(perf),
